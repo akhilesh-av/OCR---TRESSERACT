@@ -6,7 +6,7 @@ from pdf2image import convert_from_path
 from datetime import datetime
 
 class OCRProcessor:
-    def __init__(self, output_dir="OUTPUT\Processed Purchases"):
+    def __init__(self, output_dir="OUTPUT"):
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
         
@@ -24,7 +24,7 @@ class OCRProcessor:
                 "metadata": {
                     "image_size": img.size,
                     "image_mode": img.mode,
-                    "ocr_engine": "Tesseract " + pytesseract.get_tesseract_version()
+                    "ocr_engine": f"Tesseract {str(pytesseract.get_tesseract_version())}"
                 }
             }
         except Exception as e:
@@ -49,7 +49,7 @@ class OCRProcessor:
                     "metadata": {
                         "image_size": img.size,
                         "image_mode": img.mode,
-                        "ocr_engine": "Tesseract " + pytesseract.get_tesseract_version()
+                        "ocr_engine": f"Tesseract {str(pytesseract.get_tesseract_version())}"
                     }
                 })
             
@@ -122,7 +122,7 @@ def main():
     print("Processes image/PDF files and saves text as JSON\n")
     
     while True:
-        input_path = "DATA\Processed Purchases"
+        input_path = 'DATA\Processed Purchases\IMG_20240810_202356_172.jpg'
         
         if input_path.lower() == 'quit':
             break
